@@ -1,0 +1,17 @@
+nohup: ignoring input
+Generating fake catalog
+Done  0.0  % of stars
+Done  10.0  % of stars
+Done  20.0  % of stars
+Done  30.0  % of stars
+Done  40.0  % of stars
+Done  50.0  % of stars
+Done  60.0  % of stars
+Done  70.0  % of stars
+Done  80.0  % of stars
+Done  90.0  % of stars
+Elapsed_time (min) 0.09202447440000003
+Elapsed_time  per star (millisec) 2.2085873856000005
+Time elapsed 5.608397722244263
+Initializing time 0.077606201171875
+Starting emcee run
