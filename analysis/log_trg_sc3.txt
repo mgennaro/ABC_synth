@@ -1,0 +1,77 @@
+nohup: ignoring input
+Generating fake catalog
+Done  0.0  % of stars
+Done  10.0  % of stars
+Done  20.0  % of stars
+Done  30.0  % of stars
+Done  40.0  % of stars
+Done  50.0  % of stars
+Done  60.0  % of stars
+Done  70.0  % of stars
+Done  80.0  % of stars
+Done  90.0  % of stars
+Elapsed_time (min) 0.10480030231666669
+Elapsed_time  per star (millisec) 2.5152072556000005
+Time elapsed (sec) 6.410961151123047
+Initializing time 0.0993502140045166
+Starting emcee run
+1.0  % done
+Partial time 5606.780958890915
+2.0  % done
+Partial time 3486.0763313770294
+3.0  % done
+Partial time 2860.5516254901886
+4.0  % done
+Partial time 2674.55682182312
+5.0  % done
+Partial time 2539.1619482040405
+6.0  % done
+Partial time 2517.212996006012
+7.0  % done
+Partial time 1878.5685019493103
+8.0  % done
+Partial time 1782.3483345508575
+9.0  % done
+Partial time 1766.1289837360382
+10.0  % done
+Partial time 1781.5378561019897
+11.0  % done
+Partial time 1795.0132594108582
+12.0  % done
+Partial time 1814.8362393379211
+13.0  % done
+Partial time 1784.2112367153168
+14.0  % done
+Partial time 1788.0876235961914
+15.0  % done
+Partial time 1777.6492431163788
+16.0  % done
+Partial time 1746.6019973754883
+17.0  % done
+Partial time 1752.7251601219177
+18.0  % done
+Partial time 1769.155044078827
+19.0  % done
+Partial time 1774.5635964870453
+20.0  % done
+Partial time 1769.4282455444336
+21.0  % done
+Partial time 2037.7335751056671
+22.0  % done
+Partial time 1905.6253278255463
+23.0  % done
+Partial time 1786.450270652771
+24.0  % done
+Partial time 1741.5208353996277
+25.0  % done
+Partial time 1732.92454123497
+26.0  % done
+Partial time 1574.871134519577
+27.0  % done
+Partial time 1586.1763553619385
+28.0  % done
+Partial time 1567.279569864273
+29.0  % done
+Partial time 1559.611072063446
+30.0  % done
+Partial time 1571.7270352840424

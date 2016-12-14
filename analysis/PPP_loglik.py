@@ -9,7 +9,8 @@ from sim_utils.getmags import get_absolute_mags,get_observable_mags,get_noisy_ma
 from sim_utils.oneCMD import oneCMD
 import copy,time,sys
 from sklearn.neighbors import KDTree
-
+from scipy.special import erfc
+from scipy.stats import norm
 
 def set_GR(alpha,bf):
 
@@ -45,7 +46,77 @@ def GKDE_lik(noisymags,data,bwcol,bwmag):
     indlnlik     = np.log(np.sum(exponentials,axis=1))
     alllnlik     = np.sum(indlnlik)
 
-    return -ndata*(np.log(nmodel*2*np.pi) + 2*np.log(bwcol*bwmag)) +alllnlik
+    return -ndata*(np.log(nmodel*2*np.pi*bwcol*bwmag)) +alllnlik
+
+def TGKDE_lik(noisymags,data,bwcol,bwmag,truncmag):
+
+    colmod = noisymags[:,0]-noisymags[:,1]
+    magmod = noisymags[:,1]
+    coldat = data[:,0]-data[:,1]
+    magdat = data[:,1]
+
+    ndata  = magdat.size
+    nmodel = magmod.size
+
+    exponents = np.zeros([ndata,nmodel])
+       
+    for i in range(ndata):
+        dx2 = ((colmod-coldat[i])/bwcol)**2
+        dy2 = ((magmod-magdat[i])/bwmag)**2
+        exponents[i,:] =  -0.5*(dx2+dy2)
+
+
+    nn = norm(loc=0,scale=bwmag)
+    dy = magmod - truncmag
+    kfact = 1./(1-nn.cdf(dy))
+
+    exponentials = kfact*np.exp(exponents)
+    indlnlik     = np.log(np.sum(exponentials,axis=1))
+    alllnlik     = np.sum(indlnlik)
+
+    if (np.isnan(alllnlik) == True):
+        dic = {'noisymags':noisymags,
+               'data':data,
+               'bwcol':bwcol,
+               'bwmag':bwmag,
+               'truncmag':truncmag,
+               'dy':dy,
+               'kfact':kfact,
+               'exponents':exponents
+               }
+        with bz2.BZ2File('/user/gennaro/ABC_synth/WORK/herc_simul/Results/likerr.pbz2', 'w') as f:
+            pickle.dump(dic,f)
+
+
+    return -ndata*(np.log(nmodel*2*np.pi*bwcol*bwmag)) +alllnlik
+
+
+def UKDE_lik(noisymags,data,bwcol,bwmag,truncmag):
+
+    colmod = noisymags[:,0]-noisymags[:,1]
+    magmod = noisymags[:,1]
+    coldat = data[:,0]-data[:,1]
+    magdat = data[:,1]
+
+    ndata  = magdat.size
+    nmodel = magmod.size
+
+    dy   = truncmag-magmod
+    norm = np.where( dy > 0.5 *bwmag,np.repeat(1./(bwcol*bwmag),nmodel), 1/(bwcol*(0.5*bwmag+dy))) / nmodel
+    lkl  = 0.
+    
+    for i in range(ndata):
+        im  = np.abs(magdat[i]-magmod) < bwmag
+        ic  = np.abs(coldat[i]-colmod) < bwcol
+        iok = im & ic
+        if (np.any(iok) == True):
+            lkl += np.log(np.sum(norm[iok]))
+        else:
+            lkl = -np.inf
+            break
+
+    return lkl
+
 
 def loglik(nsim,alpha,bf,**kwargs):
 
@@ -69,8 +140,22 @@ def loglik(nsim,alpha,bf,**kwargs):
     '''
     Compute the likelihood using a gaussian kde
     '''
+#    lnlik = GKDE_lik(noisymags,kwargs['data'],kwargs['bwcol'],kwargs['bwmag'])
 
-    lnlik = GKDE_lik(noisymags,kwargs['data'],kwargs['bwcol'],kwargs['bwmag'])
+    '''
+    Compute the likelihood using a bounded gaussian kde
+    '''
+    lnlik = TGKDE_lik(noisymags,kwargs['data'],kwargs['bwcol'],kwargs['bwmag'],kwargs['mag2lim'])
+
+
+    '''
+    Compute the likelihood using a bounded uniform kde
+    '''
+#    lnlik = UKDE_lik(noisymags,kwargs['data'],kwargs['bwcol'],kwargs['bwmag'],kwargs['mag2lim'])
+
+    '''
+    Add normalization (KDE returns probability not intenisty of PPP
+    '''
     lnlik = -nsim+lnlik+kwargs['ndata']*np.log(nsim)
 
     return lnlik

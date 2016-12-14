@@ -20,26 +20,33 @@ from sim_utils.GeneralRandom import GeneralRandom
 from sim_utils.getmags import get_absolute_mags,get_observable_mags,get_noisy_mags
 from sim_utils.oneCMD import oneCMD
 
-from analysis.PPP_loglik import loglik,GKDE_lik,set_GR,logpost,logpost_nb
+from analysis.PPP_loglik import loglik,GKDE_lik,set_GR,logpost,logpost_nb,TGKDE_lik,UKDE_lik
 
 ################################
 #Initial setup
 
 root = '/user/gennaro/ABC_synth/WORK/herc_simul/'
 
-case = 'fp'  # suffix for the output files
+case = 'trg_sk'  # suffix for the output files
 
-tru_N, tru_alpha, tru_bf = 2500, -2.0, 0.3
+tru_N, tru_alpha, tru_bf = 2500, -2.0, 0.0
 
-fix_bf, fix_bfval = False, tru_bf # If fix_bf true do not fit for binary fraction but keep it equal to  fix_bfval
+fix_bf, fix_bfval = True, tru_bf # If fix_bf true do not fit for binary fraction but keep it equal to  fix_bfval
 
-ra_min,ra_max = -3, -1 # Range for the prior in alpha (i.e. range where the uniform prior on alpha extends)
-rb_min,rb_max = 0., 1  #  Range for the prior in bf (i.e. range where the uniform prior on bf extends)
-                    
+ra_min,ra_max = -4, -0.5 # Range for the prior in alpha (i.e. range where the uniform prior on alpha extends)
+rb_min,rb_max = 0., 1.  #  Range for the prior in bf (i.e. range where the uniform prior on bf extends)
+
+#Limits on the catalogs                    
+mag2lim = 28.25
+
+#Width of the magnitude and color kernels
+
+bwcol,bwmag = 0.01,0.025
+
 #emcee parameters
 nthreads = 10
-nwalkers = 150
-nsteps = 500
+nwalkers = 200
+nsteps = 1000
 
 ################################
 
@@ -59,7 +66,7 @@ AS_mag2_out = AScat['AS_mag2_out']
 AS_det      = AScat['AS_det']
 
 # Limit the detections to brigther than a certain magnitude
-AS_det = AS_det & (AS_mag1_out < 28.25)
+AS_det = AS_det & (AS_mag2_out < mag2lim)
 
 #############################
 # Fixed values of Distance modulus and exinction
@@ -148,8 +155,9 @@ dictopass ={'GRdic':GRdic,
             'AS_det':AS_det,
             'data':[],
             'ndata':[],
-            'bwcol':0.02,
-            'bwmag':0.05,
+            'bwcol':bwcol,
+            'bwmag':bwmag,
+            'mag2lim':mag2lim,
             'hp_alpha': hpa_GR,
             'hp_bf':hpb_GR
             }
@@ -159,9 +167,9 @@ dictopass ={'GRdic':GRdic,
 
 nsimdata = tru_N
 mss_GR_h, bin_GR_h = set_GR(tru_alpha,tru_bf)
-kwargs = copy.deepcopy(dictopass)
+kwargsh = copy.deepcopy(dictopass)
 
-GRdic_h = kwargs['GRdic']
+GRdic_h = kwargsh['GRdic']
 GRdic_h['logM'] = mss_GR_h
 GRdic_h['BinQ'] = bin_GR_h
 
@@ -171,8 +179,8 @@ print('Generating fake catalog')
 sys.stdout.flush()
 
 pars, absmags, obsmags, simdata, nall, indGR = oneCMD(nsimdata,GRdic_h,
-                                                       kwargs['iso_int'],kwargs['ASKDtree'],kwargs['AS_mag1_in'],kwargs['AS_mag2_in'],
-                                                       kwargs['AS_mag1_out'],kwargs['AS_mag2_out'],kwargs['AS_det'],verbose=True)
+                                                       kwargsh['iso_int'],kwargsh['ASKDtree'],kwargsh['AS_mag1_in'],kwargsh['AS_mag2_in'],
+                                                       kwargsh['AS_mag1_out'],kwargsh['AS_mag2_out'],kwargsh['AS_det'],verbose=True)
 
 dic = {'pars':pars,
        'absmags':absmags,
@@ -186,7 +194,7 @@ dic = {'pars':pars,
 with bz2.BZ2File(root+'/Results/simcat_'+case+'.pbz2', 'w') as f:
     pickle.dump(dic,f)
 
-print('Time elapsed',time.time()-t0)
+print('Time elapsed (sec)',time.time()-t0)
 sys.stdout.flush()
 
 dictopass['data'] = simdata
@@ -234,10 +242,10 @@ for i, result in enumerate(sampler.sample(p0, iterations=nsteps)):
     np.savetxt(f,np.column_stack((result[0],result[1])))
     f.close()
         
-print('Total time',time.time()-tt1)
+print('Total time (hours)',(time.time()-tt1)/3600.)
 sys.stdout.flush()
 
-print('Saving results')
+print('Saving results on:'+root+'/Results/chain_'+case+'.pbz2')
 sys.stdout.flush()
 
 dic = {'a':sampler.a,
@@ -245,6 +253,15 @@ dic = {'a':sampler.a,
        'chain':sampler.chain,
        'lnprobability' : sampler.lnprobability,
        'naccepted': sampler.naccepted,
+       'bwcol':bwcol,
+       'bwmag':bwmag,
+       'mag2lim':mag2lim,
+       'fix_bf':fix_bf,
+       'fix_bfval':fix_bfval,
+       'ra_min':ra_min,
+       'ra_max':ra_max,
+       'rb_min':rb_min,
+       'rb_max':rb_max  
        }
 
 with bz2.BZ2File(root+'/Results/chain_'+case+'.pbz2', 'w') as f:
