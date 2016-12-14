@@ -82,14 +82,14 @@ def oneCMD(nstars,GRdic,iso_int,ASKDtree,AS_mag1_in,AS_mag2_in,AS_mag1_out,AS_ma
         #Get the magnitudes
         absmags1 = get_absolute_mags(pars1[0],pars1[1],pars1[2],pars1[4],iso_int)
 
-        if (np.any(np.isnan(absmags1))):
+        if (np.any(np.isnan(absmags1)) == True):
             continue
 
         obsmags1 = get_observable_mags(absmags1, DM=pars1[3], ext=pars1[5:])
         noisymags1 = get_noisy_mags(obsmags1,ASKDtree,AS_mag1_in,AS_mag2_in,AS_mag1_out,AS_mag2_out,AS_det)
 
 
-        if (np.any(np.isnan(noisymags1))):
+        if (np.any(np.isnan(noisymags1)) == True):
             continue
 
         pars[ndone,:] = pars1
