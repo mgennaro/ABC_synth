@@ -1,0 +1,107 @@
+nohup: ignoring input
+Generating fake catalog
+Done  0.0  % of stars
+Done  10.0  % of stars
+Done  20.0  % of stars
+Done  30.0  % of stars
+Done  40.0  % of stars
+Done  50.0  % of stars
+Done  60.0  % of stars
+Done  70.0  % of stars
+Done  80.0  % of stars
+Done  90.0  % of stars
+Elapsed_time (min) 0.08234510041666668
+Elapsed_time  per star (millisec) 1.9762824100000003
+Time elapsed (sec) 5.133343696594238
+Initializing time 0.2680644989013672
+Starting emcee run
+1.0  % done
+Partial time 3744.1919996738434
+2.0  % done
+Partial time 2607.1394243240356
+3.0  % done
+Partial time 2361.904778957367
+4.0  % done
+Partial time 2261.2927162647247
+5.0  % done
+Partial time 2246.6304593086243
+6.0  % done
+Partial time 2371.096029996872
+7.0  % done
+Partial time 2424.371604681015
+8.0  % done
+Partial time 2398.6047558784485
+9.0  % done
+Partial time 2412.0013859272003
+10.0  % done
+Partial time 2442.3263487815857
+11.0  % done
+Partial time 2438.666166782379
+12.0  % done
+Partial time 2391.0647728443146
+13.0  % done
+Partial time 2431.471638441086
+14.0  % done
+Partial time 2420.4460995197296
+15.0  % done
+Partial time 2420.0394761562347
+16.0  % done
+Partial time 2435.8721418380737
+17.0  % done
+Partial time 2428.443400144577
+18.0  % done
+Partial time 2436.541494369507
+19.0  % done
+Partial time 2392.7119691371918
+20.0  % done
+Partial time 2414.986568927765
+21.0  % done
+Partial time 2402.7840507030487
+22.0  % done
+Partial time 2438.35994720459
+23.0  % done
+Partial time 2430.4011886119843
+24.0  % done
+Partial time 2410.1421031951904
+25.0  % done
+Partial time 2334.6188468933105
+26.0  % done
+Partial time 2413.6044018268585
+27.0  % done
+Partial time 2352.3996362686157
+28.0  % done
+Partial time 1656.408271074295
+29.0  % done
+Partial time 1486.759717464447
+30.0  % done
+Partial time 1507.140436410904
+31.0  % done
+Partial time 1455.9498796463013
+32.0  % done
+Partial time 1501.725781917572
+33.0  % done
+Partial time 1519.5401961803436
+34.0  % done
+Partial time 1514.0602722167969
+35.0  % done
+Partial time 1470.1973032951355
+36.0  % done
+Partial time 1524.7573070526123
+37.0  % done
+Partial time 1448.0956807136536
+38.0  % done
+Partial time 1369.068252325058
+39.0  % done
+Partial time 1374.1006560325623
+40.0  % done
+Partial time 1366.9160823822021
+41.0  % done
+Partial time 1370.656031370163
+42.0  % done
+Partial time 1352.5563690662384
+43.0  % done
+Partial time 1354.3900127410889
+44.0  % done
+Partial time 1347.5454733371735
+45.0  % done
+Partial time 1341.9357364177704

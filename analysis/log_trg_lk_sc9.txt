@@ -1,0 +1,61 @@
+nohup: ignoring input
+Generating fake catalog
+Done  0.0  % of stars
+Done  10.0  % of stars
+Done  20.0  % of stars
+Done  30.0  % of stars
+Done  40.0  % of stars
+Done  50.0  % of stars
+Done  60.0  % of stars
+Done  70.0  % of stars
+Done  80.0  % of stars
+Done  90.0  % of stars
+Elapsed_time (min) 0.11352435753333333
+Elapsed_time  per star (millisec) 2.7245845807999998
+Time elapsed (sec) 6.8840882778167725
+Initializing time 0.3645763397216797
+Starting emcee run
+1.0  % done
+Partial time 7051.858243703842
+2.0  % done
+Partial time 5149.549121379852
+3.0  % done
+Partial time 6799.461881399155
+4.0  % done
+Partial time 6232.4385867118835
+5.0  % done
+Partial time 5612.389786243439
+6.0  % done
+Partial time 5216.910834312439
+/user/gennaro/ABC_synth/analysis/PPP_loglik.py:74: RuntimeWarning: divide by zero encountered in log
+  indlnlik     = np.log(np.sum(exponentials,axis=1))
+/user/gennaro/ABC_synth/analysis/PPP_loglik.py:179: RuntimeWarning: divide by zero encountered in log
+  lnpri = np.log(kwargs['hp_alpha'].getpdf(pars[1]))
+/user/gennaro/ABC_synth/analysis/PPP_loglik.py:74: RuntimeWarning: divide by zero encountered in log
+  indlnlik     = np.log(np.sum(exponentials,axis=1))
+/user/gennaro/ABC_synth/analysis/PPP_loglik.py:179: RuntimeWarning: divide by zero encountered in log
+  lnpri = np.log(kwargs['hp_alpha'].getpdf(pars[1]))
+/user/gennaro/ABC_synth/analysis/PPP_loglik.py:74: RuntimeWarning: divide by zero encountered in log
+  indlnlik     = np.log(np.sum(exponentials,axis=1))
+/user/gennaro/ABC_synth/analysis/PPP_loglik.py:179: RuntimeWarning: divide by zero encountered in log
+  lnpri = np.log(kwargs['hp_alpha'].getpdf(pars[1]))
+/user/gennaro/ABC_synth/analysis/PPP_loglik.py:74: RuntimeWarning: divide by zero encountered in log
+  indlnlik     = np.log(np.sum(exponentials,axis=1))
+/user/gennaro/ABC_synth/analysis/PPP_loglik.py:179: RuntimeWarning: divide by zero encountered in log
+  lnpri = np.log(kwargs['hp_alpha'].getpdf(pars[1]))
+/user/gennaro/ABC_synth/analysis/PPP_loglik.py:74: RuntimeWarning: divide by zero encountered in log
+  indlnlik     = np.log(np.sum(exponentials,axis=1))
+/user/gennaro/ABC_synth/analysis/PPP_loglik.py:179: RuntimeWarning: divide by zero encountered in log
+  lnpri = np.log(kwargs['hp_alpha'].getpdf(pars[1]))
+/user/gennaro/ABC_synth/analysis/PPP_loglik.py:74: RuntimeWarning: divide by zero encountered in log
+  indlnlik     = np.log(np.sum(exponentials,axis=1))
+/user/gennaro/ABC_synth/analysis/PPP_loglik.py:179: RuntimeWarning: divide by zero encountered in log
+  lnpri = np.log(kwargs['hp_alpha'].getpdf(pars[1]))
+/user/gennaro/ABC_synth/analysis/PPP_loglik.py:74: RuntimeWarning: divide by zero encountered in log
+  indlnlik     = np.log(np.sum(exponentials,axis=1))
+/user/gennaro/ABC_synth/analysis/PPP_loglik.py:179: RuntimeWarning: divide by zero encountered in log
+  lnpri = np.log(kwargs['hp_alpha'].getpdf(pars[1]))
+/user/gennaro/ABC_synth/analysis/PPP_loglik.py:74: RuntimeWarning: divide by zero encountered in log
+  indlnlik     = np.log(np.sum(exponentials,axis=1))
+/user/gennaro/ABC_synth/analysis/PPP_loglik.py:179: RuntimeWarning: divide by zero encountered in log
+  lnpri = np.log(kwargs['hp_alpha'].getpdf(pars[1]))

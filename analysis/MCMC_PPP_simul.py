@@ -20,14 +20,15 @@ from sim_utils.GeneralRandom import GeneralRandom
 from sim_utils.getmags import get_absolute_mags,get_observable_mags,get_noisy_mags
 from sim_utils.oneCMD import oneCMD
 
-from analysis.PPP_loglik import loglik,GKDE_lik,set_GR,logpost,logpost_nb,TGKDE_lik,UKDE_lik
+#from analysis.PPP_loglik import loglik,GKDE_lik,set_GR,logpost,logpost_nb,TGKDE_lik,UKDE_lik
+from analysis.PPP_loglik_tr import loglik,set_GR,logpost,logpost_nb,TGKDE_lik
 
 ################################
 #Initial setup
 
 root = '/user/gennaro/ABC_synth/WORK/herc_simul/'
 
-case = 'trg_sk'  # suffix for the output files
+case = 'intintnf'  # suffix for the output files
 
 tru_N, tru_alpha, tru_bf = 2500, -2.0, 0.0
 
@@ -41,10 +42,10 @@ mag2lim = 28.25
 
 #Width of the magnitude and color kernels
 
-bwcol,bwmag = 0.01,0.025
+bwcol,bwmag = 0.02,0.05
 
 #emcee parameters
-nthreads = 10
+nthreads = 12
 nwalkers = 200
 nsteps = 1000
 
