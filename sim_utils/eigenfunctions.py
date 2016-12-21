@@ -15,8 +15,8 @@ from sim_utils.GeneralRandom import GeneralRandom
 
 nstars = 1e6
 bfs    = np.linspace(0.,1,21)   #fraction of systems that are binaries
-alphas = np.arange(-0.500,-0.499,0.025)  # IMF slope
-ncores = 7
+alphas = np.arange(-0.875,-0.499,0.025)  # IMF slope
+ncores = 12
 root = '/user/gennaro/ABC_synth/WORK/herc_simul/'
 
 
@@ -38,7 +38,7 @@ AS_mag2_out = AScat['AS_mag2_out']
 AS_det      = AScat['AS_det']
 
 # Limit the detections to brigther than a certain magnitude
-AS_det = AS_det & (AS_mag1_out < 28.25)
+AS_det = AS_det & (AS_mag2_out < 28.25)
 
 #############################
 # Fixed values of Distance modulus and exinction
